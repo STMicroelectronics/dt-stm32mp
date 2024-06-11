@@ -1,0 +1,55 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2024 - All Rights Reserved
+ * Author: Lionel Vitte <lionel.vitte@st.com> for STMicroelectronics.
+ */
+
+#include <stm32mp135f-dk.dts>
+
+/ {
+        model = "STMicroelectronics STM32MP135F-DK Discovery Board for RT";
+        compatible = "st,stm32mp135f-dk-rt", "st,stm32mp135f-dk", "st,stm32mp135";
+
+        cpu0-opp-table  {
+                opp-900000000 {
+                        opp-hz = /bits/ 64 <900000000>;
+                        opp-microvolt = <1350000>;
+                        opp-supported-hw = <0x2>;
+                        st,opp-default;
+                };
+                /delete-node/ opp-1000000000;
+        };
+};
+
+&rcc {
+	st,pll_vco {
+		pll1_vco_1800Mhz: pll1-vco-1800Mhz {
+			src = <CLK_PLL12_HSE>;
+			divmn = <1 74>;
+			frac = <0>;
+		};
+	};
+	pll1: st,pll@0 {
+		st,pll = <&pll1_cfg3>;
+
+		/* 900MHz config */
+		pll1_cfg3: pll1_cfg3 {
+			st,pll_vco = <&pll1_vco_1800Mhz>;
+			st,pll_div_pqr = <0 1 1>;
+		};
+	};
+	st,clk_opp {
+		/* CK_MPU clock config for MP13 */
+		st,ck_mpu {
+			cfg_2 {
+				hz = <900000000>;
+				st,clksrc = <CLK_MPU_PLL1P>;
+				st,pll = <&pll1_cfg3>;
+			};
+		};
+	};
+};
+
+&iwdg1 {
+        status = "disabled";
+};

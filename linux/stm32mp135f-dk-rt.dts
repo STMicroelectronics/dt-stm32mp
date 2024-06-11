@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2024 - All Rights Reserved
+ * Author: Lionel Vitte <lionel.vitte@st.com> for STMicroelectronics.
+ */
+
+#include <stm32mp135f-dk.dts>
+
+/ {
+        model = "STMicroelectronics STM32MP135F-DK Discovery Board for RT";
+        compatible = "st,stm32mp135f-dk-rt", "st,stm32mp135f-dk", "st,stm32mp135f";
+};
+
+&arm_wdt {
+        status = "disabled";
+};
+
+&iwdg2 {
+        timeout-sec = <32>;
+        status = "okay";
+};
+

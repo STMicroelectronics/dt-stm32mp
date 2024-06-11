@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2024 - All Rights Reserved
+ * Author: Lionel Vitte <lionel.vitte@st.com> for STMicroelectronics.
+ */
+
+#include <stm32mp257f-ev1.dts>
+
+/ {
+        model = "STMicroelectronics STM32MP257F-EV1 Evaluation Board for RT";
+        compatible = "st,stm32mp257f-ev1-rt", "st,stm32mp257f-ev1", "st,stm32mp257";
+};
+
+/ {
+	soc@0 {
+
+		rifsc: rifsc@42080000 {
+			iwdg2: watchdog@44020000 {
+				compatible = "st,stm32mp1-iwdg";
+				reg = <0x44020000 0x400>;
+				clocks = <&rcc CK_BUS_IWDG2>, <&rcc LSI_CK>;
+				clock-names = "pclk", "lsi";
+				status = "disabled";
+			};
+		};
+	};
+
+};
+
+&arm_wdt {
+        status = "disabled";
+};
+
+&iwdg2 {
+        timeout-sec = <32>;
+        status = "okay";
+};

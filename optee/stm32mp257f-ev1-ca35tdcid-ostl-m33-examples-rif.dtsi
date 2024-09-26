@@ -567,6 +567,7 @@
 };
 
 &hpdma1 {
+	st,errata-ahbrisab;
 	st,protreg = <
 		RIFPROT(RIF_HPDMA_CHANNEL(0), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
 		RIFPROT(RIF_HPDMA_CHANNEL(1), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
@@ -588,6 +589,7 @@
 };
 
 &hpdma2 {
+	st,errata-ahbrisab;
 	st,protreg = <
 		RIFPROT(RIF_HPDMA_CHANNEL(0), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
 		RIFPROT(RIF_HPDMA_CHANNEL(1), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_PRIV, RIF_CID1, RIF_SEM_DIS, RIF_CFEN)
@@ -609,6 +611,7 @@
 };
 
 &hpdma3 {
+	st,errata-ahbrisab;
 	st,protreg = <
 		RIFPROT(RIF_HPDMA_CHANNEL(0), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_PRIV, RIF_CID2, RIF_SEM_DIS, RIF_CFEN)
 		RIFPROT(RIF_HPDMA_CHANNEL(1), RIF_UNUSED, RIF_UNLOCK, RIF_NSEC, RIF_PRIV, RIF_CID2, RIF_SEM_DIS, RIF_CFEN)
@@ -630,6 +633,7 @@
 };
 
 &rifsc {
+	st,errata-ahbrisab;
 	st,rimu = <
 		RIMUPROT(RIMU_ID(0), RIF_CID1, RIF_NSEC, RIF_NPRIV, RIF_CIDSEL_M)
 		RIMUPROT(RIMU_ID(1), RIF_UNUSED, RIF_NSEC, RIF_PRIV, RIF_CIDSEL_P)
@@ -877,16 +881,19 @@
 };
 
 &risab3 {
+	st,errata-ahbrisab;
 	st,srwiad;
 	memory-region = <&bsec_mirror>, <&cm33_sram1>;
 };
 
 &risab4 {
+	st,errata-ahbrisab;
 	st,srwiad;
 	memory-region = <&cm33_sram2>;
 };
 
 &risab5 {
+	st,errata-ahbrisab;
 	st,srwiad;
 	memory-region = <&cm33_retram>, <&ddr_param>;
 };

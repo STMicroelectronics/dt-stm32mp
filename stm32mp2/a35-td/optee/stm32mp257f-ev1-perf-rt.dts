@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
+ * Author: Gatien Chevallier <gatien.chevallier@foss.st.com> for STMicroelectronics.
+ */
+
+#include <stm32mp257f-ev1.dts>
+#include "stm32mp257f-ev1-rt-rif.dts"
+
+/ {
+	model = "STMicroelectronics STM32MP257F-EV1 Evaluation Board for RT performance";
+	compatible = "st,stm32mp257f-ev1-perf-rt", "st,stm32mp257f-ev1-rt", "st,stm32mp257f-ev1", "st,stm32mp257";
+};
+
+&hsi_calibration {
+	status = "disabled";
+};
+
+&iwdg1 {
+	status = "disabled";
+};

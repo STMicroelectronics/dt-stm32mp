@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
+ * Author: Gatien Chevallier <gatien.chevallier@foss.st.com> for STMicroelectronics.
+ */
+
+#include <stm32mp215f-dk.dts>
+
+/ {
+	model = "STMicroelectronics STM32MP215F-DK Evaluation Board for RT performance";
+	compatible = "st,stm32mp215f-dk-perf-rt", "st,stm32mp215f-dk-rt", "st,stm32mp215f-dk", "st,stm32mp215";
+};
+
+&iwdg1 {
+	status = "disabled";
+};

@@ -1,0 +1,99 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
+ * Author: Gatien Chevallier <gatien.chevallier@foss.st.com> for STMicroelectronics.
+ */
+
+
+#include <stm32mp257f-ev1.dts>
+
+/ {
+	model = "STMicroelectronics STM32MP257F-EV1 Evaluation Board for RT performance";
+	compatible = "st,stm32mp257f-ev1-perf-rt", "st,stm32mp257f-ev1-rt", "st,stm32mp257f-ev1", "st,stm32mp257";
+};
+
+&arm_wdt {
+	status = "disabled";
+};
+
+&crc {
+	status = "disabled";
+};
+
+&cryp1 {
+	status = "disabled";
+};
+
+&csi{
+	status = "disabled";
+};
+
+&dcmipp{
+	status = "disabled";
+};
+
+&gpu{
+	status = "disabled";
+};
+
+&hpdma2 {
+	status = "disabled";
+};
+
+&hpdma3 {
+	status = "disabled";
+};
+
+&iwdg1 {
+	timeout-sec = <32>;
+	status = "okay";
+};
+
+&i2c2 {
+	camera@1a {
+		status = "disabled";
+	};
+};
+
+&ltdc{
+	status = "disabled";
+};
+
+&lvds{
+	status = "disabled";
+};
+
+&m_can1 {
+	status = "disabled";
+};
+
+&m_can3{
+	status = "disabled";
+};
+
+&ommanager {
+	status = "disabled";
+	spi@40430000 {
+		status = "disabled";
+	};
+};
+
+&panel_lvds {
+	status = "disabled";
+};
+
+&panel_lvds_backlight {
+	status = "disabled";
+};
+
+&pcie_rc {
+	status = "disabled";
+};
+
+&vdec {
+	status = "disabled";
+};
+
+&venc {
+	status = "disabled";
+};

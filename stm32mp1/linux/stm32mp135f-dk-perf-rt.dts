@@ -1,0 +1,102 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2024 - All Rights Reserved
+ * Author: Lionel Vitte <lionel.vitte@st.com> for STMicroelectronics.
+ */
+
+#include <stm32mp135f-dk.dts>
+
+/ {
+	model = "STMicroelectronics STM32MP135F-DK Discovery Board for RT performance";
+	compatible = "st,stm32mp135f-dk-perf-rt", "st,stm32mp135f-dk-rt", "st,stm32mp135f-dk", "st,stm32mp135f";
+
+	stm32-hog {
+		compatible = "st,stm32-hog";
+		clocks	=	<&scmi_clk CK_SCMI_HSE>,
+				<&scmi_clk CK_SCMI_HSI>,
+				<&scmi_clk CK_SCMI_CSI>,
+				<&scmi_clk CK_SCMI_LSE>,
+				<&scmi_clk CK_SCMI_LSI>,
+				<&scmi_clk CK_SCMI_HSE_DIV2>,
+				<&scmi_clk CK_SCMI_PLL2_Q>,
+				<&scmi_clk CK_SCMI_PLL2_R>,
+				<&scmi_clk CK_SCMI_PLL3_P>,
+				<&scmi_clk CK_SCMI_PLL3_Q>,
+				<&scmi_clk CK_SCMI_PLL3_R>,
+				<&scmi_clk CK_SCMI_PLL4_P>,
+				<&scmi_clk CK_SCMI_PLL4_Q>,
+				<&scmi_clk CK_SCMI_PLL4_R>,
+				<&scmi_clk CK_SCMI_MPU>,
+				<&scmi_clk CK_SCMI_AXI>,
+				<&scmi_clk CK_SCMI_MLAHB>,
+				<&scmi_clk CK_SCMI_CKPER>,
+				<&scmi_clk CK_SCMI_PCLK1>,
+				<&scmi_clk CK_SCMI_PCLK2>,
+				<&scmi_clk CK_SCMI_PCLK3>,
+				<&scmi_clk CK_SCMI_PCLK4>,
+				<&scmi_clk CK_SCMI_PCLK5>,
+				<&scmi_clk CK_SCMI_PCLK6>,
+				<&scmi_clk CK_SCMI_CKTIMG1>,
+				<&scmi_clk CK_SCMI_CKTIMG2>,
+				<&scmi_clk CK_SCMI_CKTIMG3>,
+				<&scmi_clk CK_SCMI_RTC>,
+				<&scmi_clk CK_SCMI_RTCAPB>,
+				<&rcc SYSCFG>;
+
+		status = "okay";
+	};
+};
+
+&arm_wdt {
+	status = "disabled";
+};
+
+&crc1 {
+	status = "disabled";
+};
+
+&cryp {
+	status = "disabled";
+};
+
+&dcmipp {
+	status = "disabled";
+};
+
+&dfsdm {
+	status = "disabled";
+};
+
+&dfsdm1 {
+	status = "disabled";
+};
+
+&gc2145 {
+	status = "disabled";
+};
+
+&goodix {
+	status = "disabled";
+};
+
+&iwdg2 {
+	timeout-sec = <32>;
+	interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
+	status = "okay";
+};
+
+&ltdc {
+	status = "disabled";
+};
+
+&panel_backlight {
+	status = "disabled";
+};
+
+&panel_rgb {
+	status = "disabled";
+};
+
+&stmipi {
+	status = "disabled";
+};

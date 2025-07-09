@@ -1,0 +1,173 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2024 - All Rights Reserved
+ * Author: Lionel Vitte <lionel.vitte@st.com> for STMicroelectronics.
+ */
+
+#include <stm32mp157f-dk2.dts>
+
+/ {
+	model = "STMicroelectronics STM32MP157F-DK2 Discovery Board for RT performance";
+	compatible = "st,stm32mp157f-dk2-perf-rt", "st,stm32mp157f-dk2-rt", "st,stm32mp157f-dk2", "st,stm32mp157";
+
+	sound {
+		status = "disabled";
+	};
+
+	stm32-hog {
+		compatible = "st,stm32-hog";
+		clocks	=	<&scmi_clk CK_SCMI_HSE>,
+				<&scmi_clk CK_SCMI_HSI>,
+				<&scmi_clk CK_SCMI_CSI>,
+				<&scmi_clk CK_SCMI_LSE>,
+				<&scmi_clk CK_SCMI_LSI>,
+				<&scmi_clk CK_SCMI_PLL2_Q>,
+				<&scmi_clk CK_SCMI_PLL2_R>,
+				<&scmi_clk CK_SCMI_MPU>,
+				<&scmi_clk CK_SCMI_AXI>,
+				<&scmi_clk CK_SCMI_BSEC>,
+				<&scmi_clk CK_SCMI_CRYP1>,
+				<&scmi_clk CK_SCMI_GPIOZ>,
+				<&scmi_clk CK_SCMI_HASH1>,
+				<&scmi_clk CK_SCMI_I2C4>,
+				<&scmi_clk CK_SCMI_I2C6>,
+				<&scmi_clk CK_SCMI_IWDG1>,
+				<&scmi_clk CK_SCMI_RNG1>,
+				<&scmi_clk CK_SCMI_RTC>,
+				<&scmi_clk CK_SCMI_RTCAPB>,
+				<&scmi_clk CK_SCMI_SPI6>,
+				<&scmi_clk CK_SCMI_USART1>,
+				<&rcc SYSCFG>;
+
+		status = "okay";
+	};
+};
+
+
+&arm_wdt {
+	status = "disabled";
+};
+
+&cec {
+	status = "disabled";
+};
+
+&crc1 {
+	status = "disabled";
+};
+
+&cryp1 {
+	status = "disabled";
+};
+
+&cs42l51 {
+	status = "disabled";
+};
+
+&dac {
+	status = "disabled";
+};
+
+&dac1 {
+	status = "disabled";
+};
+
+&dac2 {
+	status = "disabled";
+};
+
+&dcmi {
+	status = "disabled";
+};
+
+&dfsdm {
+	status = "disabled";
+};
+
+&dfsdm1 {
+	status = "disabled";
+};
+
+&dfsdm3 {
+	status = "disabled";
+};
+
+&dsi {
+	status = "disabled";
+	panel-otm8009a@0 {
+		status = "disabled";
+	};
+};
+
+&hash1 {
+	status = "disabled";
+};
+
+&iwdg2 {
+	timeout-sec = <32>;
+	interrupts = <GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH>;
+	status = "okay";
+};
+
+&i2c1 {
+	touchscreen@38 {
+		status = "disabled";
+	};
+	hdmi-transmitter@39 {
+		status = "disabled";
+	};
+	cs42l51@4a {
+		status = "disabled";
+	};
+};
+
+&i2s2 {
+	status = "disabled";
+};
+
+&ltdc {
+	status = "disabled";
+};
+
+&m_can1 {
+	status = "disabled";
+};
+
+&dsi {
+	status = "disabled";
+	panel-otm8009a@0 {
+		status = "disabled";
+	};
+};
+
+&sai2 {
+	status = "disabled";
+};
+
+&sai2a{
+	status = "disabled";
+};
+
+&sai2b{
+	status = "disabled";
+};
+
+&sai4 {
+	status = "disabled";
+};
+
+&sai4a {
+	status = "disabled";
+};
+
+&sai4b {
+	status = "disabled";
+};
+
+&spi2 {
+	status = "disabled";
+};
+
+&spdifrx {
+	status = "disabled";
+};

@@ -1,0 +1,8 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
+ * Author: Gatien Chevallier <gatien.chevallier@foss.st.com> for STMicroelectronics.
+ */
+
+#include "stm32mp25-fw-config.dtsi"
+#include "stm32mp257f-dk-ca35tdcid-fw-config.dtsi"

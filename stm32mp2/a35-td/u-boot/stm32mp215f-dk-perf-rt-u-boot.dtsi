@@ -1,0 +1,7 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
+ * Author: Gatien Chevallier <gatien.chevallier@foss.st.com> for STMicroelectronics.
+ */
+
+#include "stm32mp215f-dk-u-boot.dtsi"

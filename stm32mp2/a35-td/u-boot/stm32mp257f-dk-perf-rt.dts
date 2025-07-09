@@ -1,0 +1,100 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
+ * Author: Gatien Chevallier <gatien.chevallier@foss.st.com> for STMicroelectronics.
+ */
+
+#include <stm32mp257f-dk.dts>
+
+/ {
+	model = "STMicroelectronics STM32MP257F-DK Evaluation Board for RT performance";
+	compatible = "st,stm32mp257f-dk-perf-rt", "st,stm32mp257f-dk-rt", "st,stm32mp257f-dk", "st,stm32mp257";
+};
+
+&arm_wdt {
+	status = "disabled";
+};
+
+&csi{
+	status = "disabled";
+};
+
+&dcmi {
+	status = "disabled";
+};
+
+&dcmipp {
+	status = "disabled";
+};
+
+&dmic0{
+	status = "disabled";
+};
+
+&dmic1 {
+	status = "disabled";
+};
+
+&dsi {
+	status = "disabled";
+};
+
+&gpu{
+	status = "disabled";
+};
+
+&iwdg1 {
+	timeout-sec = <32>;
+	status = "okay";
+};
+
+&i2c2 {
+	camera@1a {
+		status = "disabled";
+	};
+	hdmi@3d {
+		status = "disabled";
+	};
+};
+
+&i2s2 {
+	status = "disabled";
+};
+
+&ltdc {
+	status = "disabled";
+};
+
+&mdf1 {
+	status = "disabled";
+	sitf@380 {
+		status = "disabled";
+	};
+	filter@104 {
+		status = "disabled";
+		mdf-dai {
+			status = "disabled";
+		};
+	};
+	filter@84 {
+		status = "disabled";
+		mdf-dai {
+			status = "disabled";
+		};
+	};
+};
+
+&ommanager {
+	status = "disabled";
+	spi@40430000 {
+		status = "disabled";
+	};
+};
+
+&vdec {
+	status = "disabled";
+};
+
+&venc {
+	status = "disabled";
+};

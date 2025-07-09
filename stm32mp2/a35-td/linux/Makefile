@@ -13,4 +13,7 @@ dtb-$(TARGET_ARM64) += \
 	stm32mp257f-dk-ca35tdcid-ostl-m33-examples.dtb \
 	stm32mp215f-dk-ca35tdcid-ostl.dtb \
 	stm32mp215f-dk-ca35tdcid-ostl-m33-examples.dtb \
-	stm32mp215f-dk-psci-osi.dtb
+	stm32mp215f-dk-psci-osi.dtb \
+	stm32mp257f-ev1-perf-rt.dtb \
+	stm32mp257f-dk-perf-rt.dtb \
+	stm32mp215f-dk-perf-rt.dtb

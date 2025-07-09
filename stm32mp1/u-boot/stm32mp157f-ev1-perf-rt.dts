@@ -1,0 +1,183 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) STMicroelectronics 2024 - All Rights Reserved
+ * Author: Lionel Vitte <lionel.vitte@st.com> for STMicroelectronics.
+ */
+
+#include <stm32mp157f-ev1.dts>
+
+/ {
+	model = "STMicroelectronics STM32MP157F-EV1 Evaluation Board for RT performance";
+	compatible = "st,stm32mp157f-ev1-perf-rt", "st,stm32mp157f-ev1-rt", "st,stm32mp157f-ev1", "st,stm32mp157";
+};
+
+&arm_wdt {
+	status = "disabled";
+};
+
+&asoc_pdm0 {
+	status = "disabled";
+};
+
+&asoc_pdm1 {
+	status = "disabled";
+};
+
+&asoc_pdm2 {
+	status = "disabled";
+};
+
+&asoc_pdm3 {
+	status = "disabled";
+};
+
+&cec {
+	status = "disabled";
+};
+
+&crc1 {
+	status = "disabled";
+};
+
+&cryp1 {
+	status = "disabled";
+};
+
+&dac {
+	status = "disabled";
+};
+
+&dac1 {
+	status = "disabled";
+};
+
+&dac2 {
+	status = "disabled";
+};
+
+&dcmi {
+	status = "disabled";
+};
+
+&dfsdm {
+	status = "disabled";
+	filter@2 {
+		status = "disabled";
+	};
+	filter@0 {
+		status = "disabled";
+	};
+};
+
+&dfsdm0 {
+	status = "disabled";
+};
+
+&dfsdm1 {
+	status = "disabled";
+};
+
+&dfsdm2 {
+	status = "disabled";
+};
+
+&dfsdm3 {
+	status = "disabled";
+};
+
+&dmic0 {
+	status = "disabled";
+};
+
+&dmic1 {
+	status = "disabled";
+};
+
+&dmic2 {
+	status = "disabled";
+};
+
+&dmic3 {
+	status = "disabled";
+};
+
+&dsi {
+	status = "disabled";
+};
+
+&gt9147 {
+	status = "disabled";
+};
+
+&hash1 {
+	status = "disabled";
+};
+
+&iwdg2 {
+	timeout-sec = <32>;
+	status = "okay";
+};
+
+&ltdc {
+	status = "disabled";
+};
+
+&m_can1 {
+	status = "disabled";
+};
+
+&ov5640 {
+	status = "disabled";
+};
+
+&panel_backlight {
+	status = "disabled";
+};
+
+&panel_dsi {
+	status = "disabled";
+};
+
+&sai2 {
+	status = "disabled";
+};
+
+&sai2a{
+	status = "disabled";
+};
+
+&sai2b{
+	status = "disabled";
+};
+
+&sai4 {
+	status = "disabled";
+};
+
+&sai4a {
+	status = "disabled";
+};
+
+&sai4b {
+	status = "disabled";
+};
+
+&sound {
+	status = "disabled";
+};
+
+&spdif_in {
+	status = "disabled";
+};
+
+&spdif_out {
+	status = "disabled";
+};
+
+&spdifrx {
+	status = "disabled";
+};
+
+&wm8994 {
+	status = "disabled";
+};

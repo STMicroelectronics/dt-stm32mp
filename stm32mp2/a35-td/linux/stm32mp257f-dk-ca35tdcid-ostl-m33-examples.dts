@@ -144,7 +144,6 @@
 		enable-gpios = <&gpioi 4 GPIO_ACTIVE_HIGH>;
 		backlight = <&panel_lvds_backlight>;
 		power-supply = <&scmi_v3v3>;
-		default-on;
 		status = "okay";
 
 		width-mm = <156>;
@@ -189,6 +188,8 @@
 	wifi_pwrseq: wifi-pwrseq {
 		compatible = "mmc-pwrseq-simple";
 		reset-gpios = <&gpiog 8 GPIO_ACTIVE_LOW>;
+		clocks = <&rtc>;
+		clock-names = "ext_clock";
 	};
 };
 
@@ -445,7 +446,6 @@
 };
 
 &ltdc {
-	default-on;
 	status = "okay";
 
 	port {
@@ -465,7 +465,6 @@
 };
 
 &lvds {
-	default-on;
 	vdd-supply =  <&scmi_vddcore>;
 	vdda18-supply = <&scmi_v1v8>;
 	status = "okay";
@@ -594,6 +593,7 @@
 };
 
 &rtc {
+	#clock-cells = <0>;
 	st,lsco = <RTC_OUT2_RMP>;
 	pinctrl-0 = <&rtc_out2_rmp_pins_a>;
 	pinctrl-names = "default";
@@ -686,6 +686,7 @@
 	bus-width = <4>;
 	vmmc-supply = <&scmi_v3v3>;
 	mmc-pwrseq = <&wifi_pwrseq>;
+	cap-power-off-card;
 	cap-sdio-irq;
 	#address-cells = <1>;
 	#size-cells = <0>;

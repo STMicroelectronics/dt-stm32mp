@@ -10,6 +10,10 @@
 / {
 	model = "STMicroelectronics STM32MP257F-EV1 Power PSCI OSI Evaluation Board";
 	compatible = "st,stm32mp257f-ev1-psci-osi", "st,stm32mp257f-ev1", "st,stm32mp257";
+
+	chosen {
+		/delete-node/framebuffer;
+	};
 };
 
 /* Deactivate drivers without a full PM runtime support or with external modules */
@@ -57,15 +61,7 @@
 	status = "disabled";
 };
 
-&usb2_phy1 {
-	status = "disabled";
-};
-
 &usb2_phy2 {
-	status = "disabled";
-};
-
-&usbh {
 	status = "disabled";
 };
 

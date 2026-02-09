@@ -329,7 +329,6 @@
 				regulator-max-microvolt = <3300000>;
 				regulator-over-current-protection;
 				st,regulator-bypass-microvolt = <3300000>;
-
 				st,pwrctrl-sel = <3>;
 				st,pwrctrl-reset;
 			};
@@ -407,7 +406,6 @@
 		regulator-min-microvolt = <1800000>;
 		regulator-max-microvolt = <1800000>;
 		vdda18adc-supply = <&v1v8>;
-		regulator-always-on;
 	};
 
 	vddgpu: vddgpu {

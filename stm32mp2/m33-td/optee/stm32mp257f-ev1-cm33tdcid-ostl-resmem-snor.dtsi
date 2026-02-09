@@ -19,5 +19,11 @@
 			reg = <0x0 0x60000000 0x0 0x10000000>;
 			#memory-region-cells = <0>;
 		};
+
+		mm_ospi1_sub: mm-ospi-sub@60000000 {
+			compatible = "reserved-memory";
+			reg = <0x0 0x60000000 0x0 0x10000000>;
+			#memory-region-cells = <0>;
+		};
 	};
 };

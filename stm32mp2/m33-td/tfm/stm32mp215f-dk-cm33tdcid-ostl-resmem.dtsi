@@ -100,19 +100,19 @@
 
 		cm33_cube_fw: cm33-cube-fw@80080000 {
 			compatible = "reserved-memory";
-			reg = <0x0 0x80080000 0x0 0x80000>;
+			reg = <0x0 0x80080000 0x0 0x200000>;
 			#memory-region-cells = <0>;
 		};
 
-		tfm_data: tfm-data@80100000 {
+		tfm_data: tfm-data@80280000 {
 			compatible = "reserved-memory";
-			reg = <0x0 0x80100000 0x0 0x100000>;
+			reg = <0x0 0x80280000 0x0 0x100000>;
 			#memory-region-cells = <0>;
 		};
 
-		cm33_cube_data: cm33-cube-data@80200000 {
+		cm33_cube_data: cm33-cube-data@80380000 {
 			compatible = "reserved-memory";
-			reg = <0x0 0x80200000 0x0 0x800000>;
+			reg = <0x0 0x80380000 0x0 0x680000>;
 			#memory-region-cells = <0>;
 		};
 

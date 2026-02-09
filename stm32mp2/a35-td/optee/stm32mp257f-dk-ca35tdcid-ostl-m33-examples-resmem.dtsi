@@ -55,7 +55,6 @@
 			no-map;
 		};
 
-		/* PCIe reserved memory declaration */
 		/* Backup RAM reserved memory declaration */
 		bl31_lowpower: bl31-lowpower@42000000 {
 			reg = <0x0 0x42000000 0x0 0x1000>;
@@ -138,6 +137,5 @@
 			reg = <0x1 0x00000000 0x0 0x80000000>;
 			no-map;
 		};
-
 	};
 };

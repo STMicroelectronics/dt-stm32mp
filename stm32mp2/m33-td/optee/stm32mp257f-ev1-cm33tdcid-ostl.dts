@@ -120,23 +120,6 @@
 	status = "disabled";
 };
 
-&rcc {
-	st,c1msrd = <2>;
-	st,clk_opp {
-		st,ck_cpu1 {
-			cfg_1 {
-				hz = <1500000000>;
-				st,pll = <&pll1_cfg_1500Mhz>;
-			};
-
-			cfg_2 {
-				hz = <1200000000>;
-				st,pll = <&pll1_cfg_1200Mhz>;
-			};
-		};
-	};
-};
-
 &risab3 {
 	status = "disabled";
 };

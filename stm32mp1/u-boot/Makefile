@@ -1,10 +1,14 @@
 # SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
 
 dtb-$(CONFIG_STM32MP13X) += \
+	stm32mp135f-dk-ostl.dtb \
 	stm32mp135f-dk-perf-rt.dtb
+	stm32mp135f-dk-pmic1ld-ostl.dtb \
 
 dtb-$(CONFIG_STM32MP15X) += \
+	stm32mp157f-dk2-ostl.dtb \
 	stm32mp157f-dk2-perf-rt.dtb \
+	stm32mp157f-ev1-ostl.dtb \
 	stm32mp157f-ev1-perf-rt.dtb
 
 dtb-$(CONFIG_STM32MP21X) += \

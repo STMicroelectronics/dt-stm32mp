@@ -61,6 +61,10 @@
 	operating-points-v2 = <&cpu0_opp_table>;
 };
 
+&cryp1 {
+	status = "okay";
+};
+
 &iwdg1 {
 	timeout-sec = <32>;
 	status = "okay";

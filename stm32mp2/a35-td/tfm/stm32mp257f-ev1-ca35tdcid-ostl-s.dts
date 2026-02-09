@@ -24,6 +24,7 @@
 
 	chosen {
 		stdout-device = &uart5;
+		tfm,watchdog = &iwdg3;
 	};
 
 	memory@80000000 {
@@ -81,4 +82,13 @@
 &bsec {
 	memory-region = <&bsec_mirror>;
 	status = "okay";
+};
+
+&iwdg3 {
+	status = "okay";
+	timeout-sec = <120>;
+};
+
+&sau {
+	memory-region = <&cm33_cube_fw>, <&cm33_cube_data>, <&ipc_shmem>;
 };

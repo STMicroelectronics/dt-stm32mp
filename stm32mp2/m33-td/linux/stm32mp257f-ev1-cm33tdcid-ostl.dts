@@ -53,11 +53,16 @@
 		#size-cells = <2>;
 		ranges;
 
-		framebuffer {
+		framebuffer: framebuffer@80b00000 {
 			compatible = "simple-framebuffer";
+			reg = <0x00 0x80b00000 0x00 (1024 * 600 * 2)>;
 			clocks = <&rcc CK_BUS_LTDC>, <&rcc CK_KER_LTDC>,
 				 <&rcc CK_BUS_LVDS>, <&rcc CK_KER_LVDSPHY>;
-			status = "disabled";
+			width = <1024>;
+			height = <600>;
+			stride = <2048>;
+			format = "r5g6b5";
+			status = "okay";
 		};
 	};
 
@@ -79,6 +84,11 @@
 			compatible = "fixed-clock";
 			clock-frequency = <100000000>;
 		};
+	};
+
+	clock_critical: clock_critical {
+		compatible = "st,stm32-hog";
+		clocks = <&scmi_clk CK_SCMI_ICN_PCIE>;
 	};
 
 	gpio-keys {
@@ -133,7 +143,6 @@
 		enable-gpios = <&gpiog 15 GPIO_ACTIVE_HIGH>;
 		backlight = <&panel_lvds_backlight>;
 		power-supply = <&scmi_v3v3>;
-		default-on;
 		status = "okay";
 
 		width-mm = <156>;
@@ -163,7 +172,6 @@
 		compatible = "gpio-backlight";
 		gpios = <&gpioi 5 GPIO_ACTIVE_HIGH>;
 		default-on;
-		default-brightness-level = <1>;
 		status = "okay";
 	};
 
@@ -214,7 +222,7 @@
 };
 
 &bsec {
-	memory-region = <&bsec_mirror >;
+	memory-region = <&bsec_mirror>;
 };
 
 &combophy {
@@ -222,6 +230,20 @@
 	clock-names = "apb-clk", "ker-clk", "pad-clk";
 	st,rx_equalizer = <1>;
 	status = "okay";
+};
+
+&cpu0 {
+	operating-points-v2 = <&cpu0_opp_table>;
+	clocks = <&ca35ss_clk>;
+	power-domains = <&cpu0_pd>;
+	power-domain-names = "psci";
+};
+
+&cpu1 {
+	operating-points-v2 = <&cpu0_opp_table>;
+	clocks = <&ca35ss_clk>;
+	power-domains = <&cpu1_pd>;
+	power-domain-names = "psci";
 };
 
 &crc {
@@ -345,6 +367,8 @@
 };
 
 &gpu {
+	power-domains = <&scmi_devpd PD_SCMI_GPU>, <&d1_pd>;
+	power-domain-names = "scmi_devpd", "d1_pd";
 	contiguous-area = <&gpu_reserved>;
 	status = "okay";
 };
@@ -481,19 +505,17 @@
 	};
 };
 
-&cpu0 {
-	operating-points-v2 = <&cpu0_opp_table>;
-	clocks = <&ca35ss_clk>;
-};
-
-&cpu1 {
-	operating-points-v2 = <&cpu0_opp_table>;
-	clocks = <&ca35ss_clk>;
-};
-
 &ipcc1 {
 	/delete-property/clocks;
 	status = "okay";
+};
+
+/* use LPTIMER with tick broadcast for suspend mode */
+&lptimer3 {
+	status = "okay";
+	timer {
+		status = "okay";
+	};
 };
 
 &lpuart1 {
@@ -508,7 +530,6 @@
 };
 
 &ltdc {
-	default-on;
 	rotation-memory = <&ltdc_sec_rotation>;
 	status = "okay";
 
@@ -529,7 +550,6 @@
 };
 
 &lvds {
-	default-on;
 	vdd-supply =  <&scmi_vddcore>;
 	vdda18-supply = <&scmi_v1v8>;
 	status = "okay";
@@ -568,21 +588,27 @@
 	status = "okay";
 };
 
-&mlahb {
-	intc_rpmsg: interrupt-controller@1 {
-		compatible = "rpmsg,intc";
-		reg = <1 0>;
-		#interrupt-cells = <1>;
-		interrupt-controller;
-	};
+&m33_rproc {
+	mboxes = <&ipcc1 0x100>, <&ipcc1 0x101>;
+	mbox-names = "vq0", "vq1";
+	nvmem-cells = <&rsc_tbl_addr_m33td>, <&rsc_tbl_size_m33td>;
+	memory-region = <&ipc_shmem_1>, <&vdev0vring0>,
+			<&vdev0vring1>, <&vdev0buffer>;
+	/delete-property/resets;
+	/delete-property/reset-names;
+	keep-power-in-suspend;
+	st,auto-boot;
+	status = "okay";
+};
 
-	i2c_rpmsg: i2c@2 {
-		compatible = "rpmsg,i2c-controller";
-		reg = <2 0>;
-		rpmsg,dev-id = "rpmsg_i2c";
-		#address-cells = <1>;
-		#size-cells = <0>;
-		status = "okay";
+&nvram {
+	nvmem-layout {
+		rsc_tbl_addr_m33td: tamp-bkp@1e4 {
+			reg = <0x1e4 0x4>;
+		};
+		rsc_tbl_size_m33td: tamp-bkp@1e8 {
+			reg = <0x1e8 0x4>;
+		};
 	};
 };
 
@@ -602,7 +628,7 @@
 	reset-gpios = <&gpioj 8 GPIO_ACTIVE_LOW>;
 	wakeup-source;
 	wake-gpios = <&gpioh 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-	status = "disabled";
+	status = "okay";
 };
 
 &rtc {

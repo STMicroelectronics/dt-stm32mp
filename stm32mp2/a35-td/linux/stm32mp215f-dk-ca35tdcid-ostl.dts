@@ -91,7 +91,7 @@
 			label = "User-2";
 			linux,code = <BTN_2>;
 			gpios = <&gpiof 7 GPIO_ACTIVE_HIGH>;
-			status = "okay";
+			status = "disabled";
 		};
 
 		button-wake-up {
@@ -124,7 +124,6 @@
 		compatible = "gpio-backlight";
 		gpios = <&gpiof 9 GPIO_ACTIVE_HIGH>;
 		default-on;
-		default-brightness-level = <1>;
 		status = "okay";
 	};
 
@@ -134,7 +133,6 @@
 		backlight = <&panel_backlight>;
 		power-supply = <&scmi_v3v3>;
 		data-mapping = "bgr666";
-		default-on;
 		status = "okay";
 
 		width-mm = <105>;
@@ -207,6 +205,8 @@
 	wifi_pwrseq: wifi-pwrseq {
 		compatible = "mmc-pwrseq-simple";
 		reset-gpios = <&gpiob 2 GPIO_ACTIVE_LOW>;
+		clocks = <&rtc>;
+		clock-names = "ext_clock";
 	};
 };
 
@@ -400,7 +400,6 @@
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&ltdc_pins_a>;
 	pinctrl-1 = <&ltdc_sleep_pins_a>;
-	default-on;
 	status = "okay";
 
 	port {
@@ -496,6 +495,7 @@
 };
 
 &rtc {
+	#clock-cells = <0>;
 	st,lsco = <RTC_OUT1>;
 	pinctrl-0 = <&rtc_out1_pins_a>;
 	pinctrl-names = "default";
@@ -545,6 +545,7 @@
 	pinctrl-1 = <&sdmmc2_b4_od_pins_a>;
 	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a>;
 	st,neg-edge;
+	cap-power-off-card;
 	cap-sdio-irq;
 	bus-width = <4>;
 	vmmc-supply = <&scmi_v3v3>;

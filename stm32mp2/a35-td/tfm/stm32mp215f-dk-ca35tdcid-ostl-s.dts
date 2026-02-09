@@ -24,6 +24,7 @@
 
 	chosen {
 		stdout-device = &uart4;
+		tfm,watchdog = &iwdg3;
 	};
 
 	memory@80000000 {
@@ -49,4 +50,13 @@
 	clocks = <&rcc CK_KER_UART4>;
 	current-speed = <115200>;
 	status = "okay";
+};
+
+&iwdg3 {
+	status = "okay";
+	timeout-sec = <120>;
+};
+
+&sau {
+	memory-region = <&cm33_cube_fw>, <&cm33_cube_data>, <&ipc_shmem>;
 };

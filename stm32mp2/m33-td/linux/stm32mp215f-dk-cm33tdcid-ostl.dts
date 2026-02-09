@@ -53,10 +53,15 @@
 		#size-cells = <2>;
 		ranges;
 
-		framebuffer {
+		framebuffer: framebuffer@80b00000 {
 			compatible = "simple-framebuffer";
-			clocks = <&rcc CK_KER_LTDC>;
-			status = "disabled";
+			reg = <0x00 0x80b00000 0x00 (480 * 272 * 2)>;
+			clocks = <&rcc CK_BUS_LTDC>, <&rcc CK_KER_LTDC>;
+			width = <480>;
+			height = <272>;
+			stride = <960>;
+			format = "r5g6b5";
+			status = "okay";
 		};
 	};
 
@@ -112,14 +117,6 @@
 			gpios = <&gpiof 7 GPIO_ACTIVE_HIGH>;
 			status = "disabled";
 		};
-
-		button-wake-up {
-			label = "wake-up";
-			linux,code = <KEY_WAKEUP>;
-			interrupts-extended = <&optee 0>;
-			wakeup-source;
-			status = "okay";
-		};
 	};
 
 	gpio-leds {
@@ -143,7 +140,6 @@
 		compatible = "gpio-backlight";
 		gpios = <&gpiof 9 GPIO_ACTIVE_HIGH>;
 		default-on;
-		default-brightness-level = <1>;
 		status = "okay";
 	};
 
@@ -153,7 +149,6 @@
 		backlight = <&panel_backlight>;
 		power-supply = <&scmi_v3v3>;
 		data-mapping = "bgr666";
-		default-on;
 		status = "okay";
 
 		width-mm = <105>;
@@ -192,11 +187,12 @@
 	wifi_pwrseq: wifi-pwrseq {
 		compatible = "mmc-pwrseq-simple";
 		reset-gpios = <&gpiob 2 GPIO_ACTIVE_LOW>;
+		clocks = <&rtc>;
+		clock-names = "ext_clock";
 	};
 };
 
 &scmi {
-
 	compatible = "arm,scmi";
 	#address-cells = <1>;
 	#size-cells = <0>;
@@ -231,11 +227,22 @@
 };
 
 &bsec {
-	memory-region = <&bsec_mirror >;
+	memory-region = <&bsec_mirror>;
+};
+
+&cpu0 {
+	operating-points-v2 = <&cpu0_opp_table>;
+	clocks = <&ca35ss_clk>;
+	power-domains = <&cpu0_pd>;
+	power-domain-names = "psci";
 };
 
 &crc {
 	status = "disabled";
+};
+
+&cryp2 {
+	status = "okay";
 };
 
 &csi {
@@ -377,11 +384,6 @@
 	status = "disabled";
 };
 
-&cpu0 {
-	operating-points-v2 = <&cpu0_opp_table>;
-	clocks = <&ca35ss_clk>;
-};
-
 &ipcc1 {
 	/delete-property/clocks;
 	status = "okay";
@@ -399,7 +401,6 @@
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&ltdc_pins_a>;
 	pinctrl-1 = <&ltdc_sleep_pins_a>;
-	default-on;
 	status = "okay";
 
 	port {
@@ -407,6 +408,19 @@
 			remote-endpoint = <&panel_in_rgb>;
 		};
 	};
+};
+
+&m33_rproc {
+	mboxes = <&ipcc1 0x100>, <&ipcc1 0x101>;
+	mbox-names = "vq0", "vq1";
+	nvmem-cells = <&rsc_tbl_addr_m33td>, <&rsc_tbl_size_m33td>;
+	memory-region = <&ipc_shmem_1>, <&vdev0vring0>,
+			<&vdev0vring1>, <&vdev0buffer>;
+	/delete-property/resets;
+	/delete-property/reset-names;
+	keep-power-in-suspend;
+	st,auto-boot;
+	status = "okay";
 };
 
 &mdf1 {
@@ -483,25 +497,19 @@
 	};
 };
 
-&mlahb {
-	intc_rpmsg: interrupt-controller@1 {
-		compatible = "rpmsg,intc";
-		reg = <1 0>;
-		#interrupt-cells = <1>;
-		interrupt-controller;
-	};
-
-	i2c_rpmsg: i2c@2 {
-		compatible = "rpmsg,i2c-controller";
-		reg = <2 0>;
-		rpmsg,dev-id = "rpmsg_i2c";
-		#address-cells = <1>;
-		#size-cells = <0>;
-		status = "okay";
+&nvram {
+	nvmem-layout {
+		rsc_tbl_addr_m33td: tamp-bkp@1e4 {
+			reg = <0x1e4 0x4>;
+		};
+		rsc_tbl_size_m33td: tamp-bkp@1e8 {
+			reg = <0x1e8 0x4>;
+		};
 	};
 };
 
 &rtc {
+	#clock-cells = <0>;
 	st,lsco = <RTC_OUT1>;
 	pinctrl-0 = <&rtc_out1_pins_a>;
 	pinctrl-names = "default";
@@ -555,6 +563,7 @@
 	pinctrl-1 = <&sdmmc2_b4_od_pins_a>;
 	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a>;
 	st,neg-edge;
+	cap-power-off-card;
 	cap-sdio-irq;
 	bus-width = <4>;
 	vmmc-supply = <&scmi_v3v3>;

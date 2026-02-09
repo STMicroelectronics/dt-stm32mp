@@ -27,8 +27,8 @@
 	/delete-node/ port;
 };
 
-&i2c_rpmsg {
-	/delete-node/ typec@35;
+&ltdc {
+	status = "disabled";
 };
 
 &sdmmc3 {
@@ -39,6 +39,10 @@
 	bootph-all;
 	/delete-property/ clocks;
 	status = "okay";
+};
+
+&m33_rproc {
+	status = "disabled";
 };
 
 &scmi {

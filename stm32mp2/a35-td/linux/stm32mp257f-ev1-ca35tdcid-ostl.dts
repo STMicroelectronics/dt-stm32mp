@@ -62,6 +62,11 @@
 		};
 	};
 
+	clock_critical: clock_critical {
+		compatible = "st,stm32-hog";
+		clocks = <&rcc CK_LPTIM4_AM>;
+	};
+
 	gpio-keys {
 		compatible = "gpio-keys";
 
@@ -76,7 +81,7 @@
 			label = "User-2";
 			linux,code = <BTN_2>;
 			gpios = <&gpiog 8 GPIO_ACTIVE_HIGH>;
-			status = "okay";
+			status = "disabled";
 		};
 
 		button-wake-up {
@@ -122,7 +127,6 @@
 		enable-gpios = <&gpiog 15 GPIO_ACTIVE_HIGH>;
 		backlight = <&panel_lvds_backlight>;
 		power-supply = <&scmi_v3v3>;
-		default-on;
 		status = "okay";
 
 		width-mm = <156>;
@@ -152,7 +156,6 @@
 		compatible = "gpio-backlight";
 		gpios = <&gpioi 5 GPIO_ACTIVE_HIGH>;
 		default-on;
-		default-brightness-level = <1>;
 		status = "okay";
 	};
 
@@ -188,6 +191,17 @@
 
 &a35ss_syscfg {
 	status = "okay";
+};
+
+&ahbsr {
+	mbox_client: mailbox-client@1 {
+		compatible = "mbox-cdev";
+		reg = <1 0>;
+		memory-region =  <&ipc_shmem_2>;
+		mboxes = <&ipcc2 0x200>;
+		mbox-names = "rx-tx";
+		status = "okay";
+	};
 };
 
 &arm_wdt {
@@ -486,7 +500,6 @@
 };
 
 &ltdc {
-	default-on;
 	rotation-memory = <&ltdc_sec_rotation>;
 	status = "okay";
 
@@ -507,7 +520,6 @@
 };
 
 &lvds {
-	default-on;
 	vdd-supply =  <&scmi_vddcore>;
 	vdda18-supply = <&scmi_v1v8>;
 	status = "okay";
@@ -530,6 +542,24 @@
 			};
 		};
 	};
+};
+
+&m0_rproc {
+	memory-region = <&cm0_cube_fw>, <&cm0_cube_data>;
+	clocks = <&rcc CK_CPU3>,
+		 <&rcc CK_CPU3_AM>,
+		 <&rcc CK_LPUART1_C3>,
+		 <&rcc CK_KER_LPUART1>,
+		 <&rcc CK_LPUART1_AM>,
+		 <&rcc CK_GPIOZ_C3>,
+		 <&scmi_clk CK_SCMI_GPIOZ>,
+		 <&scmi_clk CK_SCMI_GPIOZ_AM>,
+		 <&rcc CK_LPTIM4_C3>,
+		 <&rcc CK_KER_LPTIM4>,
+		 <&rcc CK_LPTIM4_AM>,
+		 <&scmi_clk CK_SCMI_IPCC2>,
+		 <&scmi_clk CK_SCMI_IPCC2_AM>;
+	status = "okay";
 };
 
 &m33_rproc {

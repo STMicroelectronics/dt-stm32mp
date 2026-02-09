@@ -20,6 +20,10 @@
 	/delete-node/ typec;
 };
 
+&ltdc {
+	status = "disabled";
+};
+
 &usart2 {
 	bootph-all;
 };
@@ -38,6 +42,11 @@
 	bootph-all;
 	/delete-property/ clocks;
 	status = "okay";
+};
+
+
+&m33_rproc {
+	status = "disabled";
 };
 
 &scmi {

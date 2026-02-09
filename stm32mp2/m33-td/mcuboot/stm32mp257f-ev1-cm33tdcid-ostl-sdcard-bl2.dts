@@ -32,6 +32,7 @@
 	chosen {
 		stdout-device = &uart5;
 		tfm,entropy = &rng;
+		tfm,watchdog = &iwdg3;
 	};
 
 	memory@80000000 {
@@ -46,10 +47,10 @@
 			      <&id_otp>,
 			      <&package_otp>,
 			      <&hconf1_otp>,
-			      <&bl2_rotpk_0>,
-			      <&bl2_rotpk_0>, /*keep the same key for slot1 */
+			      <&tfm_fw_pkh>,
+			      <&ddr_fw_pkh>,
+			      <&ca35_fw_pkh>,
 			      <&board_id>,
-			      <&entropy_seed>,
 			      <&iak>;
 		nvmem-cell-names = "implementation_id",
 				   "rpn_otp",
@@ -57,10 +58,10 @@
 				   "id_otp",
 				   "package_otp",
 				   "hconf1_otp",
-				   "bl2_rotpk_0",
-				   "bl2_rotpk_1",
+				   "tfm_fw_pkh",
+				   "ddr_fw_pkh",
+				   "ca35_fw_pkh",
 				   "board_id",
-				   "entropy_seed",
 				   "iak";
 	};
 
@@ -92,7 +93,7 @@
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	pmic2: stpmic2@33 {
+	stpmic25: pmic@33 {
 		compatible = "st,stpmic2";
 		reg = <0x33>;
 		status = "okay";
@@ -266,6 +267,10 @@
 	shadow-provisionning = <0x00018000>;
 };
 
+&ramcfg {
+	status = "okay";
+};
+
 &rifsc {
 	status = "okay";
 };
@@ -291,4 +296,9 @@
 
 &tamp {
 	status = "okay";
+};
+
+&iwdg3 {
+	status = "okay";
+	timeout-sec = <120>;
 };

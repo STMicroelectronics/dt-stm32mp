@@ -130,6 +130,13 @@
 				regulator-min-microvolt = <800000>;
 				regulator-max-microvolt = <900000>;
 				regulator-over-current-protection;
+
+				standby {
+					regulator-off-in-suspend;
+				};
+				off {
+					regulator-off-in-suspend;
+				};
 			};
 			vddio_pmic: buck4 {
 				regulator-name = "vddio_pmic";
@@ -274,6 +281,13 @@
 				regulator-min-microvolt = <3300000>;
 				regulator-max-microvolt = <3300000>;
 				regulator-over-current-protection;
+
+				standby {
+					regulator-off-in-suspend;
+				};
+				off {
+					regulator-off-in-suspend;
+				};
 			};
 			v5v_hdmi: ldo5 {
 				regulator-name = "v5v_hdmi";
@@ -347,7 +361,6 @@
 		regulator-min-microvolt = <1800000>;
 		regulator-max-microvolt = <1800000>;
 		vdda18adc-supply = <&v1v8>;
-		regulator-always-on;
 	};
 
 	vddgpu: vddgpu {

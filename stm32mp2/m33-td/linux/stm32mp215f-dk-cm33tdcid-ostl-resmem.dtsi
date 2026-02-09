@@ -23,17 +23,17 @@
 		};
 
 		hpdma1_lli: hpdma1-lli@a020000 {
-			reg = <0x0 0xa020000 0x0 0xf0f0>;
+			reg = <0x0 0xa020000 0x0 0x10000>;
 			no-map;
 		};
 
-		hpdma2_lli: hpdma2-lli@a02f0f0 {
-			reg = <0x0 0xa02f0f0 0x0 0xf0f0>;
+		hpdma2_lli: hpdma2-lli@a030000 {
+			reg = <0x0 0xa030000 0x0 0xe000>;
 			no-map;
 		};
 
-		hpdma3_lli: hpdma3-lli@a03e1e0 {
-			reg = <0x0 0xa03e1e0 0x0 0x1e20>;
+		hpdma3_lli: hpdma3-lli@a03e000 {
+			reg = <0x0 0xa03e000 0x0 0x2000>;
 			no-map;
 		};
 
@@ -98,17 +98,17 @@
 		};
 
 		cm33_cube_fw: cm33-cube-fw@80080000 {
-			reg = <0x0 0x80080000 0x0 0x80000>;
+			reg = <0x0 0x80080000 0x0 0x200000>;
 			no-map;
 		};
 
-		tfm_data: tfm-data@80100000 {
-			reg = <0x0 0x80100000 0x0 0x100000>;
+		tfm_data: tfm-data@80280000 {
+			reg = <0x0 0x80280000 0x0 0x100000>;
 			no-map;
 		};
 
-		cm33_cube_data: cm33-cube-data@80200000 {
-			reg = <0x0 0x80200000 0x0 0x800000>;
+		cm33_cube_data: cm33-cube-data@80380000 {
+			reg = <0x0 0x80380000 0x0 0x680000>;
 			no-map;
 		};
 

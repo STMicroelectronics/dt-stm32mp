@@ -2,8 +2,8 @@
 
 dtb-$(CONFIG_STM32MP13X) += \
 	stm32mp135f-dk-ostl.dtb \
-	stm32mp135f-dk-perf-rt.dtb
-	stm32mp135f-dk-pmic1ld-ostl.dtb \
+	stm32mp135f-dk-perf-rt.dtb \
+	stm32mp135f-dk-pmic1ld-ostl.dtb
 
 dtb-$(CONFIG_STM32MP15X) += \
 	stm32mp157f-dk2-ostl.dtb \

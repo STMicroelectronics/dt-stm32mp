@@ -15,7 +15,6 @@ dtb-$(CONFIG_STM32MP23X) += \
 	stm32mp235f-ev1-stpmic2l-ca35tdcid-ostl.dtb
 
 dtb-$(CONFIG_STM32MP25X) += \
-	stm32mp251f-ev1-ca35tdcid-ostl.dtb \
 	stm32mp257f-dk-ca35tdcid-ostl.dtb \
 	stm32mp257f-dk-ca35tdcid-ostl-m33-examples.dtb \
 	stm32mp257f-dk-perf-rt.dtb \

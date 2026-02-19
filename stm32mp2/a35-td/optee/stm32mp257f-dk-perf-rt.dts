@@ -5,6 +5,7 @@
  */
 
 #include <stm32mp257f-dk.dts>
+#include "stm32mp257f-dk-perf-rt-rcc.dtsi"
 #include "stm32mp257f-dk-rt-rif.dts"
 
 / {

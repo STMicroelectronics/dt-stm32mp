@@ -30,6 +30,9 @@ flavorlist-MP25 += $(flavor_dts_file-257F_EV1_OSTL_M33_EXAMPLES_SRAM)
 flavor_dts_file-257F_DK_OSTL = stm32mp257f-dk-ca35tdcid-ostl.dts
 flavorlist-MP25 += $(flavor_dts_file-257F_DK_OSTL)
 
+flavor_dts_file-257F_DK_RT += stm32mp257f-dk-perf-rt.dts
+flavorlist-MP25 += $(flavor_dts_file-257F_DK_RT)
+
 flavor_dts_file-257F_DK_OSTL_M33_EXAMPLES = stm32mp257f-dk-ca35tdcid-ostl-m33-examples.dts
 flavorlist-MP25 += $(flavor_dts_file-257F_DK_OSTL_M33_EXAMPLES)
 

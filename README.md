@@ -10,7 +10,7 @@ Please, find below some kind of configurations stored in this repository:
 As configurations become increasingly complex, it is important to synchronize all software components device trees in one place. This centralization permits to have a coherent configuration across all of them.
 This consistent product configuration is given as example by ST in this external device tree repository and is used by YOCTO build system.
 
-WARNING!! reorganization of the tree
+Organization of the tree
 •	stm32mp1
    o	linux
    o	optee
